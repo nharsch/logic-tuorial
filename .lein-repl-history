@@ -1,0 +1,134 @@
+(ns logic-tutorial.tut1
+  (:refer-clojure :exclude [==])
+  (:use [clojure.core.logic])
+  (:use [clojure.core.logic.pldb]))
+(db-rel parent x y)
+(db-rel male x)
+(db-rel female x)
+(defn child [x y]
+  (parent y x))
+(defn son [x y]
+  (all
+   (child x y)
+   (male x)))
+(defn daughter [x y]
+  (all
+   (child x y)
+   (female x)))
+(defn grandparent [x y]
+  (fresh [z]
+    (parent x z)
+    (parent z y)))
+(defn granddaughter [x y]
+  (fresh [z]
+    (daughter x z)
+    (child z y)))
+(require 'clojure.core.logic)
+(load "logic_tutorial/tut1")
+(in-ns 'logic-tutorial.tut1)
+(db-rel man x)
+(def men
+  (db
+    [man 'Bob]
+    [man 'John]))
+with-db men
+(with-db men
+  (run 1 [q] (man q)))
+  (run 1[q] (man q)))
+  (run * [q] (man q)))
+(with-db men (run 3 [q] (man q)))
+(db-rel fun x)
+(def fun-people
+  (db
+    [fun 'Bob]))
+(with-dbs [men fun-people]
+  (run* [q]
+    (man q)
+    (fun q)))
+e   (fn x)un q)))
+(def facts
+  (db
+    [woman 'Lucy]
+    [woman 'Mary]))
+(db-rel woman x)
+(def facts
+  (db
+    [woman 'Lucy]
+    [woman 'Mary]))
+(def facts
+  (db
+    [woman 'Lucy]
+    [woman 'Mary]))
+(def facts
+  (db
+    [woman 'Lucy]
+    [woman 'Mary]))
+(with-dbs [men facts (run * [q] (likes 'Bob q))])
+(db-rel likes x y)
+(with-dbs [men facts (run * [q] (likes 'Bob q))])
+(def facts
+  (-> facts
+      (db-fact1 likes 'Bob 'Mary)
+      (db-fact likes 'John 'Lucy)))
+(def facts
+  (-> facts
+      (db-fact likes 'Bob 'Mary)
+      (db-fact likes 'John 'Lucy)))
+(with-dbs [men facts (run * [q] (likes 'Bob q))])
+(db-rel woman x)
+(def facts
+  (db
+    [woman 'Lucy]
+    [woman 'Mary]))
+(db-rel likes x y)
+(def facts
+  (-> facts
+      (db-fact likes 'Bob 'Mary)
+      (db-fact likes 'John 'Lucy)))
+(with-dbs [men facts (run * [q] (likes 'Bob q))])
+facts
+(with-dbs [men facts (run * [q] (likes 'Mary q)))
+(with-dbs [men facts (run * [q] (likes 'Mary q)))))
+(with-dbs [men facts (run * [q] (likes 'Mary q))
+)
+(with-dbs [men facts] (run * [q] (likes 'Mary q))
+)
+(with-dbs [men facts] (run* [q] (likes 'Mary q)))
+(with-dbs [men facts] (run* [q] (likes 'Bob q)))
+(def facts (db-facts facts likes 'Mary 'Bob))
+(def facts (db-factsfacts likes 'Mary 'Bob))
+(def facts (db-fact facts likes 'Mary 'Bob))
+(with-dbs [men facts] (run* [q] (fresh [x y ] (likes x y) (== q [x y]))))
+(with-dbs [men facts] (run* [q] (fresh [x y] (likes x y) (likes y x) (== q [x y])))
+)
+(def genealogy
+  (db
+    [parent 'John 'Bobby]
+    [male 'Bobby]))
+(with-db genealogy
+  (run* [q]
+    (son q 'John)))
+(def genealogy
+  (-> genealogy
+    (db-fact parent 'George 'John)))
+(with-db genealogy (run* [q] (grandparent q 'Bobby)))
+(run* [q] (membero q [1 2 3]) (membero q [2 3 4]))
+(== 0 1)
+(run [q]
+  (== q 1))
+(run [q] (== q 1))
+(run* [q] (== q 1))
+(run* [q] (== {:a q :b2} {:a 1 :b 2}))
+(run* [q] (== {:a q :b 2} {:a 1 :b 2}))
+(run* [q] (== {:a q :b 2} {:a 1 :b 3}))
+(run* [q] (== {:a 1 :b 2} {:a 1 :b q}))
+(all 1 2 3)
+(all (1 2 2)
+)
+all
+(run* [q] (== 5))
+(run* [q] (== 5 5))
+(run* [q] (== 5 4))
+(run* [q] (== q 5))
+(run* [q] (== q 5) (== q 4))
+(exit)
